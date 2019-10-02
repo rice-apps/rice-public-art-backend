@@ -12,12 +12,15 @@ var dbRoute = process.env.MONGODB_URI || 'mongodb://localhost/moody'
 var port = process.env.PORT || 3000;
 
 // Create Random Art 
-require('./config/art');
+var databaseAdd = require('./config/art');
 
-mongoose.connect(dbRoute, { useNewUrlParser: true })
+mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
 var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'DATABASE CONNECTION ERROR'));
-db.once('open', () => console.log("DATABASE CONNECTION SUCCESSFUL"))
+db.on('error', console.error.bind(console, 'Database Connection Error'));
+db.once('open', () => {
+  databaseAdd();
+  console.log("Database Connection Successful");
+})
 
 var app = express();
 
@@ -37,12 +40,12 @@ var apiRouter = require('./routes/api');
 app.use('/api', apiRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};

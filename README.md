@@ -14,7 +14,7 @@ To check if you have these installed run
 3. If you have not run the server before run `$ mongo` to allow for local creation of the database (also run if you have deleted the database).
 3. Run `$ npm start` to start the server.
 
-Note that unless the environment variables for `MONGODB_URI` and `PORT` are set in the `.env` file, the server runs on `port 300` and uses `mongodb://localhost/moody` as the database location.
+Note that unless the environment variables for `MONGODB_URI` and `PORT` are set in the `.env` file, the server runs on `port 3000` and uses `mongodb://localhost/moody` as the database location.
 
 # Structure
 

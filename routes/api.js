@@ -34,5 +34,20 @@ router.route('/art')
             data: req.body
         })
     })
+    .delete((req, res) => {
+        Art.findByIdAndRemove(req.body._id)
+        .then(confirmation => {
+            return res.send({
+                success:true,
+                data: confirmation
+            })
+        })
+        .catch(error => {
+            return res.send({
+                success: false,
+                error: error
+            })
+        })
+    })
 
 module.exports = router;

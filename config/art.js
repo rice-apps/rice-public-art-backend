@@ -1,5 +1,6 @@
 var Art = require('../models/art');
 
+// Add default entries to the database
 addArt = () => {
     const randomArt = [
         {
@@ -17,6 +18,7 @@ addArt = () => {
     randomArt.map(({ name, description, image }) => {
         Art.findOne({ name: name })
             .then(piece => {
+                // Only add the art if it isn't already in the database
                 if (!piece) {
                     let artPiece = new Art();
                     artPiece.name = name;

@@ -1,6 +1,5 @@
 var Art = require('../models/art');
 
-
 addArt = () => {
     const randomArt = [
         {
@@ -28,6 +27,9 @@ addArt = () => {
                             console.log(err)
                         })
                 }
+            })
+            .catch(error => {
+                console.log(error)
             })
     })
 }

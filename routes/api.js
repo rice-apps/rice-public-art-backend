@@ -48,6 +48,21 @@ router.route('/art')
                 success: false,
             })
         })
+    })
+    .delete((req, res) => {
+        Art.findByIdAndRemove(req.body._id)
+        .then(confirmation => {
+            return res.send({
+                success:true,
+                data: confirmation
+            })
+        })
+        .catch(error => {
+            return res.send({
+                success: false,
+                error: error
+            })
+        })
         
     })
 

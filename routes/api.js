@@ -18,5 +18,20 @@ router.route('/art')
                 })
             })
     })
+    .post((req, res) => {
+        console.log(req.query);
+        console.log(req.body);
+        // let artPiece = new Art();
+        // artPiece.name = req.body.name;
+        // artPiece.description = req.body.description;
+        // artPiece.image = req.body.image;
+        // artPiece.save()
+        //     .catch(err => {
+        //         console.log(err)
+        //     })
+        return res.send({
+            success: true
+        })
+    })
 
 module.exports = router;

@@ -29,12 +29,12 @@ router.route('/art')
                     return res.send({
                         success: true,
                     })
-                    .catch(err => {
-                        console.log(err)
-                        return res.send({
-                            success: false,
+                        .catch(err => {
+                            console.log(err)
+                            return res.send({
+                                success: false,
+                            })
                         })
-                    })
                 })
             } else {
                 return res.send({
@@ -42,28 +42,27 @@ router.route('/art')
                 })
             }
         })
-        .catch(error => {
-            console.log(error)
-            return res.send({
-                success: false,
+            .catch(error => {
+                console.log(error)
+                return res.send({
+                    success: false,
+                })
             })
-        })
     })
     .delete((req, res) => {
         Art.findByIdAndRemove(req.body._id)
-        .then(confirmation => {
-            return res.send({
-                success:true,
-                data: confirmation
+            .then(confirmation => {
+                return res.send({
+                    success: true,
+                    data: confirmation
+                })
             })
-        })
-        .catch(error => {
-            return res.send({
-                success: false,
-                error: error
+            .catch(error => {
+                return res.send({
+                    success: false,
+                    error: error
+                })
             })
-        })
-        
     })
 
 module.exports = router;

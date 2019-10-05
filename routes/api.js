@@ -19,29 +19,31 @@ router.route('/art')
             })
     })
     .post((req, res) => {
-        Art.findOne({ name: req.body.name }).then(piece => {
-            if (!piece) {
-                let artPiece = new Art();
-                artPiece.name = req.body.name;
-                artPiece.description = req.body.description;
-                artPiece.image = req.body.image;
-                artPiece.save().then(data => {
-                    return res.send({
-                        success: true,
-                    })
+        Art.findOne({ name: req.body.name })
+            .then(piece => {
+                if (!piece) {
+                    let artPiece = new Art();
+                    artPiece.name = req.body.name;
+                    artPiece.description = req.body.description;
+                    artPiece.image = req.body.image;
+                    artPiece.save()
+                        .then(data => {
+                            return res.send({
+                                success: true,
+                            })
+                        })
                         .catch(err => {
                             console.log(err)
                             return res.send({
                                 success: false,
                             })
                         })
-                })
-            } else {
-                return res.send({
-                    success: true,
-                })
-            }
-        })
+                } else {
+                    return res.send({
+                        success: true,
+                    })
+                }
+            })
             .catch(error => {
                 console.log(error)
                 return res.send({

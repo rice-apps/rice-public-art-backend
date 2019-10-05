@@ -3,21 +3,8 @@ require('dotenv').config();
 var createError = require('http-errors');
 var express = require('express');
 var logger = require('morgan');
-var mongoose = require('mongoose');
 
-var dbRoute = process.env.MONGODB_URI || 'mongodb://localhost/moody'
 var port = process.env.PORT || 3000;
-
-// Create Random Art 
-var databaseAdd = require('./config/art');
-
-mongoose.connect(dbRoute, { useNewUrlParser: true, useUnifiedTopology: true })
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'Database Connection Error'));
-db.once('open', () => {
-  databaseAdd();
-  console.log("Database Connection Successful");
-})
 
 var app = express();
 

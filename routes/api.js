@@ -19,7 +19,6 @@ router.route('/art')
             })
     })
     .post((req, res) => {
-        console.log(req.query);
         console.log(req.body);
         // let artPiece = new Art();
         // artPiece.name = req.body.name;
@@ -29,8 +28,10 @@ router.route('/art')
         //     .catch(err => {
         //         console.log(err)
         //     })
+        console.log(req)
         return res.send({
-            success: true
+            success: true,
+            data: req.body
         })
     })
 

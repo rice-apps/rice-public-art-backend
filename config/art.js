@@ -24,12 +24,12 @@ addArt = () => {
                     artPiece.image = image;
                     artPiece.save()
                         .catch(err => {
-                            console.log(err)
+                            console.log(err);
                         })
                 }
             })
             .catch(error => {
-                console.log(error)
+                console.log(error);
             })
     })
 }

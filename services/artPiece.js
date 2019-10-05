@@ -1,4 +1,4 @@
-var client = require('./contentfulContent').client;
+var client = require('./contentfulClient').client;
 
 function getArt() {
     query = {}

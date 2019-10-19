@@ -4,14 +4,14 @@ var artPiece = require('../services/artPiece');
 
 router.route('/allArt')
     .get((req, res) => {
-        let result = Promise.all([
-            artPiece.getCampusArt(),
-            artPiece.getMoodyArt()
-        ])
-        return res.send({
-            success: true,
-            data: result
-        })
+        Promise.all([artPiece.getCampusArt(), artPiece.getMoodyArt()])
+            .then(results =>
+                console.log(results)
+            )
+            .catch(error =>
+                console.log(error)
+            )
+
     })
-    
+
 module.exports = router;

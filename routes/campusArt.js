@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var artPiece = require('../services/artPiece');
 
-router.route('/allArt')
-    .get((req, res) => {
-        artPiece.getCampusArt()
+router.get('/allArt', (req, res) => {
+    artPiece.getCampusArt()
         .then(art => {
             data = art.items.map(artData => {
                 let fields = artData.fields
@@ -22,6 +21,6 @@ router.route('/allArt')
                 error: error
             })
         })
-    })
-    
+})
+
 module.exports = router;

@@ -30,21 +30,20 @@ router.get('/allArt', (req, res) => {
         })
 })
 
-router.route('/announcements')
-    .get((req, res) => {
-        announcement.getAnnouncements()
-            .then(announcements => {
-                return res.send({
-                    success: true,
-                    data: announcements.items[0].fields
-                })
+router.get('/allArt', (req, res) => {
+    announcement.getAnnouncements()
+        .then(announcements => {
+            return res.send({
+                success: true,
+                data: announcements.items[0].fields
             })
-            .catch(error => {
-                return res.send({
-                    success: false,
-                    error: error
-                })
+        })
+        .catch(error => {
+            return res.send({
+                success: false,
+                error: error
             })
-    })
+        })
+})
 
 module.exports = router;

@@ -20,7 +20,7 @@ var generalRouter = require('./routes/general');
 // Routing
 app.use('/campusArt', campusArtRouter);
 app.use('/moodyArt', moodyArtRouter);
-app.use('/general', moodyArtRouter);
+app.use('/general', generalRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

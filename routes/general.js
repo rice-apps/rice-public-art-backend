@@ -3,24 +3,32 @@ var router = express.Router();
 var artPiece = require('../services/artPiece');
 var announcement = require('../services/announcement')
 
-router.route('/allArt')
-    .get((req, res) => {
-        console.log("general all")
-        Promise.all([artPiece.getMoodyArt, artPiece.getCampusArt])
-            .then(results => {
-                console.log(results)
-                return res.send({
-                    success: true,
-                    data: results
-                })
+router.get('/allArt', (req, res) => {
+    Promise.all([artPiece.getMoodyArt(), artPiece.getCampusArt()])
+        .then(results => {
+            let moodyArt = results[0].items.map(item => {
+                let result = item.fields;
+                result.image = result.image.fields.file.url;
+                return result;
             })
-            .catch(error => {
-                return res.send({
-                    success: false,
-                    error: true
-                })
+            let campusArt = results[1].items.map(item => {
+                let result = item.fields;
+                result.image = result.image.fields.file.url;
+                return result;
             })
-    })
+            return res.send({
+                success: true,
+                // data: moodyArt.concat(campusArt)
+                data: { "moodyArt": moodyArt, "campusArt": campusArt }
+            })
+        })
+        .catch(error => {
+            return res.send({
+                success: false,
+                error: error
+            })
+        })
+})
 
 router.route('/announcements')
     .get((req, res) => {

@@ -14,10 +14,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 // Routes
-var apiRouter = require('./routes/api');
+var campusArtRouter = require('./routes/campusArt');
 
 // Routing
-app.use('/api', apiRouter);
+app.use('/campusArt', campusArtRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

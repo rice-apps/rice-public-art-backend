@@ -12,7 +12,8 @@ To check if you have these installed run
 1. Clone this repo and cd into it.
 2. Run `$ npm install` to install the neccessary dependencies.
 3. If you have not run the server before run `$ mongo` to allow for local creation of the database (also run if you have deleted the database).
-3. Run `$ npm start` to start the server.
+3. Run `$ npm start` to start the server using node.
+4. Run `$ npm run dev` to run the server in development mode using nodemon.
 
 Note that unless the environment variables for `MONGODB_URI` and `PORT` are set in the `.env` file, the server runs on `port 3000` and uses `mongodb://localhost/moody` as the database location.
 

@@ -15,9 +15,11 @@ app.use(express.urlencoded({ extended: false }));
 
 // Routes
 var campusArtRouter = require('./routes/campusArt');
-
+var moodyArtRouter = require('./routes/moodyArt');
 // Routing
 app.use('/campusArt', campusArtRouter);
+app.use('/moodyArt', moodyArtRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

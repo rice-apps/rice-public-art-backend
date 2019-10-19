@@ -6,9 +6,14 @@ router.route('/allArt')
     .get((req, res) => {
         artPiece.getCampusArt()
         .then(art => {
+            data = art.items.map(artData => {
+                let fields = artData.fields
+                fields.image = fields.image.fields.file.url
+                return fields
+            })
             return res.send({
                 success: true,
-                data: art.items[0].fields
+                data: data
             })
         })
         .catch(error => {

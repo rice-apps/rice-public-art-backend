@@ -2,9 +2,8 @@ var express = require('express');
 var router = express.Router();
 var artPiece = require('../services/artPiece');
 
-router.route('/allArt')
-    .get((req, res) => {
-        artPiece.getMoodyArt()
+router.get('/allArt', (req, res) => {
+    artPiece.getMoodyArt()
         .then(art => {
             return res.send({
                 success: true,
@@ -17,6 +16,8 @@ router.route('/allArt')
                 error: error
             })
         })
-    })
+})
+
+
 
 module.exports = router;

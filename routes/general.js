@@ -30,7 +30,7 @@ router.get('/allArt', (req, res) => {
         })
 })
 
-router.get('announcements', (req, res) => {
+router.get('/announcements', (req, res) => {
     announcement.getAnnouncements()
         .then(announcements => {
             let result = announcements.items.map(item => item.fields)

@@ -34,9 +34,10 @@ router.route('/announcements')
     .get((req, res) => {
         announcement.getAnnouncements()
             .then(announcements => {
+                let result = announcements.items.map(item => item.fields)
                 return res.send({
                     success: true,
-                    data: announcements.items[0].fields
+                    data: result
                 })
             })
             .catch(error => {

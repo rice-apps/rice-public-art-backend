@@ -8,7 +8,7 @@ router.get('/allArt', (req, res) => {
         .then(art => {
             data = art.items.map(artData => {
                 let fields = artData.fields
-                fields.image = fields.image.fields.file.url
+                fields.image = "https:"+fields.image.fields.file.url
                 return fields
             })
             return res.send({
@@ -30,7 +30,7 @@ router.get('/closestArt', (req, res) => {
         .then(art => {
             data = art.items.map(artData => {
                 let fields = artData.fields
-                fields.image = fields.image.fields.file.url
+                fields.image = "https:"+fields.image.fields.file.url
                 fields.distanceMiles = distance(userCoords.lat, userCoords.lon, fields.location.lat, fields.location.lon)
                 return fields
             })

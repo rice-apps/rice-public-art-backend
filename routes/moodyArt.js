@@ -8,7 +8,7 @@ router.get('/allArt', (req, res) => {
             let data = art.items
             data = data.map(item => {
                 let result = item.fields;
-                result.image = result.image.fields.file.url;
+                result.image = "https:"+result.image.fields.file.url;
                 return result;
             })
             return res.send({

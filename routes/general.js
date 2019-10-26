@@ -8,12 +8,12 @@ router.get('/allArt', (req, res) => {
         .then(results => {
             let moodyArt = results[0].items.map(item => {
                 let result = item.fields;
-                result.image = result.image.fields.file.url;
+                result.image = "https:"+result.image.fields.file.url;
                 return result;
             })
             let campusArt = results[1].items.map(item => {
                 let result = item.fields;
-                result.image = result.image.fields.file.url;
+                result.image = "https:"+result.image.fields.file.url;
                 return result;
             })
             return res.send({

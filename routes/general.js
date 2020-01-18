@@ -33,10 +33,14 @@ router.get('/allArt', (req, res) => {
 router.get('/events', (req, res) => {
     event.getEvents()
         .then(events => {
-            let result = events.items.map(item => item.fields)
+            data = events.items.map(event => {
+                let fields = event.fields;
+                fields.image = "https:" + fields.image.fields.file.url;
+                return fields;
+            })
             return res.send({
                 success: true,
-                data: result
+                data: data
             })
         })
         .catch(error => {

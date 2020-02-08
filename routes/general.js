@@ -30,7 +30,7 @@ router.get('/allArt', (req, res) => {
         })
 })
 
-router.get('/events', (req, res) => {
+router.get('/allEvents', (req, res) => {
     event.getEvents()
         .then(events => {
             data = events.items.map(event => {
@@ -38,6 +38,31 @@ router.get('/events', (req, res) => {
                 fields.image = "https:" + fields.image.fields.file.url;
                 return fields;
             })
+            return res.send({
+                success: true,
+                data: data
+            })
+        })
+        .catch(error => {
+            return res.send({
+                success: false,
+                error: error
+            })
+        })
+})
+
+router.get('/events', (req, res) => {
+    var year = req.query.year
+    var month = req.query.month
+    if (month.length < 2) {month = "0" + month}
+    event.getEvents()
+        .then(events => {
+            data = events.items.map(event => {
+                let fields = event.fields;
+                fields.image = "https:" + fields.image.fields.file.url;
+                return fields;
+            })
+            data = data.filter(event => event.date.includes(year + "-" + month))
             return res.send({
                 success: true,
                 data: data
